@@ -1,6 +1,6 @@
 {
-  "name": "sanctioned-addresses",
-  "version": "1.0.3",
+  "name": "compliance-sdk",
+  "version": "1.0.0",
   "description": "",
   "main": "src/index.ts",
   "scripts": {
