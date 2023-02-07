@@ -8,7 +8,7 @@ The Compliance SDK aims to simplify the process of staying up-to-date with the l
 ## Update Cadence
 Please note that there is currently no SLA for how quickly the repository will be updated to reflect the most recent OFAC sanctioned addresses. Updates will be done on a best-effort basis.
 
-## HUsage
+## Usage
 To get started, [import the SDK](https://www.npmjs.com/package/compliance-sdk) into your project. Then, choose one of the following options:
 
 ### Option One: Import the SANCTIONED_ADDRESSES list
