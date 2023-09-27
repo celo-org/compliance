@@ -35,4 +35,12 @@ export async function SanctionedAddressAPI(): Promise<string[]> {
 }
 ```
 
-**note**: No changes to your code will be necessary when the list is updated as this API will always return the latest version.  
+**note**: No changes to your code will be necessary when the list is updated as this API will always return the latest version.
+
+## Contributing
+This project has two main lists, `ofac.sanctions.json` and `list.ts`. Both these lists hold the same set of addresses. 
+The former is used for the API call, while the latter is used for the direct import.
+
+To contribute, modify the ofac.sanctions.json list in the root directory.
+
+When the change is merged into the main branch, Github will automatically serve the updated list at the API endpoint.sla
