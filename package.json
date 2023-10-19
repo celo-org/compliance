@@ -2,10 +2,21 @@
   "name": "compliance-sdk",
   "version": "1.0.11",
   "description": "",
-  "main": "src/index.ts",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
+  "types": "./lib/index.d.ts",
+  "files": [
+    "lib",
+    "ofac.sanctions.json"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "update-ofac-list": "ts-node scripts/get-latest-sanctions.ts && ts-node scripts/export-sanctions.ts"
+    "clean": "rm -rf ./lib",
+    "build:esm": "tsc --module esnext --outDir ./lib/esm",
+    "build:cjs": "tsc --module commonjs --outDir ./lib/cjs",
+    "build:types": "tsc --declaration --emitDeclarationOnly --outFile ./lib/index.d.ts",
+    "build": "npm run clean && npm run build:esm && npm run build:cjs && npm run build:types",
+    "xss": "ts-node scripts/get-latest-sanctions.ts && ts-node scripts/export-sanctions.ts"
   },
   "author": "",
   "license": "ISC",
