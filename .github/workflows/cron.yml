@@ -24,9 +24,15 @@ jobs:
       - name: Check if new addresses were added via the OFAC xss feed
         run: npm run update-ofac-list
 
+      - name: Sets a flag if the list was changed
+        id: diff_flag
+        run: |
+          git diff --exit-code ofac.sanctions.json
+          echo "GIT_EXIT_CODE=$?" >> $GITHUB_OUTPUT
+
       - uses: stefanzweifel/git-auto-commit-action@v5
         commit_message: "auto: Add new OFAC addresses"
 
       - name: "Run if changes have been detected"
-        if: steps.auto-commit-action.outputs.changes_detected == 'true'
+        if: ${{ steps.bump_version.diff_flag.GIT_EXIT_CODE == 1 }}
         uses: celo-org/compliance/.github/worklows/publish.yml@main

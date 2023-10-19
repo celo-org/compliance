@@ -21,7 +21,7 @@ jobs:
 
       - name: Bump version
         id: bump_version
-        run: NPM_VERSION=$(npm version patch --no-git-tag-version) >> $GITHUB_OUTPUT
+        run: echo "NPM_VERSION=$(npm version patch --no-git-tag-version)" >> $GITHUB_OUTPUT
 
       - name: Publish
         run: npm publish
