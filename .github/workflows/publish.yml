@@ -2,6 +2,7 @@ name: Publish Package to npmjs
 
 on:
   workflow_call:
+  workflow_dispatch:
 
 jobs:
   publish:
@@ -26,6 +27,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: "18.x"
+          registry-url: "https://registry.npmjs.org"
 
       - run: npm install
 
