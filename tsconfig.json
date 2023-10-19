@@ -5,7 +5,8 @@
     "target": "ES2019",
     "moduleResolution": "node",
     "sourceMap": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "declaration": true
   },
   "lib": ["ES2019"],
   "include": ["src"]

@@ -4,7 +4,7 @@
   "description": "",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
-  "types": "./lib/index.d.ts",
+  "types": "./lib/cjs/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/celo-org/compliance"
@@ -18,8 +18,7 @@
     "clean": "rm -rf ./lib",
     "build:esm": "tsc --module esnext --outDir ./lib/esm",
     "build:cjs": "tsc --module commonjs --outDir ./lib/cjs",
-    "build:types": "tsc --declaration --emitDeclarationOnly --outFile ./lib/index.d.ts",
-    "build": "npm run clean && npm run build:esm && npm run build:cjs && npm run build:types",
+    "build": "npm run clean && npm run build:esm && npm run build:cjs",
     "update_ofac_list": "ts-node scripts/get-latest-sanctions.ts && ts-node scripts/export-sanctions.ts"
   },
   "author": "",
