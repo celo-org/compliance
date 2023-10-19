@@ -26,15 +26,15 @@ const parser = new Parser();
         dom.window.document.getElementById("block-ofac-content")?.textContent;
       if (!text) throw new Error("Couldn't find the right div");
 
-      const RE = /ETH (0x[a-fA-F0-9]{40})/g;
+      const RE = /(0x[a-fA-F0-9]{40})/g;
       const matches = text.matchAll(RE);
       if (!matches) {
         console.info("No ETH addresses were found");
         processedURLs[link] = [];
       } else {
-        processedURLs[link] = [...matches].map(([, address]) =>
-          address.toLowerCase()
-        );
+        processedURLs[link] = [
+          ...new Set([...matches].map(([, address]) => address.toLowerCase())),
+        ];
       }
     } catch (e) {
       console.error(e);
