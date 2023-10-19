@@ -136,5 +136,5 @@ export const SANCTIONED_ADDRESSES = [
   "0xf67721a2d8f736e75a49fdd7fad2e31d8676542a",
   "0xf7b31119c2682c88d88d455dbb9d5932c65cf1be",
   "0xfd8610d20aa15b7b2e3be39b396a1bc3516c7144",
-  "0xffbac21a641dcfe4552920138d90f3638b3c9fba",
+  "0xffbac21a641dcfe4552920138d90f3638b3c9fba"
 ] as const;
