@@ -5,16 +5,27 @@ on:
 
 jobs:
   publish:
-    runs-on: ubuntu-latest
-
+    runs-on: ["self-hosted", "org", "npm-publish"]
     permissions:
       contents: write
+      id-token: write
+      pull-requests: write
+      repository-projects: write
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Akeyless Get Secrets
+        id: get_auth_token
+        uses: docker://us-west1-docker.pkg.dev/devopsre/akeyless-public/akeyless-action:latest
+        with:
+          api-url: https://api.gateway.akeyless.celo-networks-dev.org
+          access-id: p-kf9vjzruht6l
+          static-secrets: '{"/static-secrets/apps-tooling-circle/npm-publish-token":"NPM_TOKEN"}'
+
       - uses: actions/setup-node@v3
         with:
-          node-version: "20.x"
+          node-version: "18.x"
 
       - run: npm install
 
@@ -24,15 +35,6 @@ jobs:
       - name: Bump version
         id: bump_version
         run: echo "NPM_VERSION=$(npm version patch --no-git-tag-version)" >> $GITHUB_OUTPUT
-
-      - name: Akeyless Get Secrets
-        id: get_auth_token
-        uses: docker://us-west1-docker.pkg.dev/devopsre/akeyless-public/akeyless-action:latest
-        with:
-          api-url: https://api.gateway.akeyless.celo-networks-dev.org
-          # this access-id needs to change whenever devops gives em
-          access-id: p-kf9vjzruht6l
-          static-secrets: '{"/static-secrets/apps-tooling-circle/npm-publish-token":"NPM_TOKEN"}'
 
       - name: Publish
         run: npm publish
