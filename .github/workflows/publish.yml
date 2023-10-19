@@ -38,5 +38,6 @@ jobs:
           NODE_AUTH_TOKEN: ${{ env.NPM_TOKEN }}
 
       - uses: stefanzweifel/git-auto-commit-action@v5
-        commit_message: "auto: publish ${{ steps.bump_version.outputs.NPM_VERSION }}"
-        tagging_message: ${{ steps.bump_version.outputs.NPM_VERSION }}
+        with:
+          commit_message: "auto: publish ${{ steps.bump_version.outputs.NPM_VERSION }}"
+          tagging_message: ${{ steps.bump_version.outputs.NPM_VERSION }}

@@ -31,7 +31,8 @@ jobs:
           echo "GIT_EXIT_CODE=$?" >> $GITHUB_OUTPUT
 
       - uses: stefanzweifel/git-auto-commit-action@v5
-        commit_message: "auto: Add new OFAC addresses"
+        with:
+          commit_message: "auto: Add new OFAC addresses"
 
       - name: "Run if changes have been detected"
         if: ${{ steps.bump_version.diff_flag.GIT_EXIT_CODE == 1 }}
