@@ -10,7 +10,7 @@ jobs:
   update_ofac_list:
     runs-on: ubuntu-latest
     outputs:
-      output1: ${{ steps.step1.outputs.test }}
+      GIT_EXIT_CODE: ${{ steps.diff_flag.outputs.GIT_EXIT_CODE }}
     permissions:
       contents: write
 
