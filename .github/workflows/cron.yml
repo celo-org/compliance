@@ -1,0 +1,38 @@
+name: Update OFAC list
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Daily at 9AM
+    - cron: "0 9 * * *"
+
+jobs:
+  update-ofac-list:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "20.x"
+
+      - run: npm install
+
+      - name: Check if new addresses were added via the OFAC xss feed
+        run: npm run update-ofac-list
+
+      - name: Sets a flag if the list was changed
+        id: diff_flag
+        run: |
+          git diff --exit-code ofac.sanctions.json
+          echo "GIT_EXIT_CODE=$?" >> $GITHUB_OUTPUT
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        commit_message: "auto: Add new OFAC addresses"
+
+      - name: "Run if changes have been detected"
+        if: ${{ steps.bump_version.diff_flag.GIT_EXIT_CODE == 1 }}
+        uses: celo-org/compliance/.github/worklows/publish.yml@main
