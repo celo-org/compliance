@@ -31,6 +31,7 @@ export const SANCTIONED_ADDRESSES = [
   "0x330bdfade01ee9bf63c209ee33102dd334618e0a",
   "0x35fb6f6db4fb05e6a4ce86f2c93691425626d4b1",
   "0x38735f03b30fbc022ddd06abed01f0ca823c6a94",
+  "0x39d908dac893cbcb53cc86e0ecc369aa4def1a29",
   "0x3aac1cc67c2ec5db4ea850957b967ba153ad6279",
   "0x3cbded43efdaf0fc77b9c55f6fc9988fcc9b757d",
   "0x3cffd56b47b7b41c56258d9c7731abadc360e073",
@@ -134,6 +135,7 @@ export const SANCTIONED_ADDRESSES = [
   "0xf60dd140cff0706bae9cd734ac3ae76ad9ebc32a",
   "0xf67721a2d8f736e75a49fdd7fad2e31d8676542a",
   "0xf7b31119c2682c88d88d455dbb9d5932c65cf1be",
+  "0xfac583c0cf07ea434052c49115a4682172ab6b4f",
   "0xfd8610d20aa15b7b2e3be39b396a1bc3516c7144",
-  "0xffbac21a641dcfe4552920138d90f3638b3c9fba",
+  "0xffbac21a641dcfe4552920138d90f3638b3c9fba"
 ] as const;
