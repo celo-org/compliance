@@ -20,7 +20,7 @@
     "build:cjs": "tsc --module commonjs --outDir ./lib/cjs",
     "build:types": "tsc --declaration --emitDeclarationOnly --outFile ./lib/index.d.ts",
     "build": "npm run clean && npm run build:esm && npm run build:cjs && npm run build:types",
-    "xss": "ts-node scripts/get-latest-sanctions.ts && ts-node scripts/export-sanctions.ts"
+    "update_ofac_list": "ts-node scripts/get-latest-sanctions.ts && ts-node scripts/export-sanctions.ts"
   },
   "author": "",
   "license": "ISC",

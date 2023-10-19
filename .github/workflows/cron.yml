@@ -7,9 +7,10 @@ on:
     - cron: "0 9 * * *"
 
 jobs:
-  update-ofac-list:
+  update_ofac_list:
     runs-on: ubuntu-latest
-
+    outputs:
+      output1: ${{ steps.step1.outputs.test }}
     permissions:
       contents: write
 
@@ -22,7 +23,7 @@ jobs:
       - run: npm install
 
       - name: Check if new addresses were added via the OFAC xss feed
-        run: npm run update-ofac-list
+        run: npm run update_ofac_list
 
       - name: Sets a flag if the list was changed
         id: diff_flag
@@ -34,6 +35,7 @@ jobs:
         with:
           commit_message: "auto: Add new OFAC addresses"
 
-      - name: "Run if changes have been detected"
-        if: ${{ steps.bump_version.diff_flag.GIT_EXIT_CODE == 1 }}
-        uses: celo-org/compliance/.github/worklows/publish.yml@main
+  publish-npm-package:
+    needs: update_ofac_list
+    if: ${{ needs.update_ofac_list.outputs.GIT_EXIT_CODE == 1 }}
+    uses: celo-org/compliance/.github/workflows/publish.yml@main
