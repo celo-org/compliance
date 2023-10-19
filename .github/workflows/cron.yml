@@ -28,8 +28,9 @@ jobs:
       - name: Sets a flag if the list was changed
         id: diff_flag
         run: |
-          git diff --exit-code ofac.sanctions.json
-          echo "GIT_EXIT_CODE=$?" >> $GITHUB_OUTPUT
+          RESULT=$(git diff --name-only ofac.sanctions.json)
+          [[ "$RESULT" = "" ]] && GIT_EXIT_CODE=0 || GIT_EXIT_CODE=1
+          echo "GIT_EXIT_CODE=$GIT_EXIT_CODE" >> $GITHUB_OUTPUT >> $GITHUB_OUTPUT
 
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
