@@ -22,7 +22,7 @@ jobs:
 
       - run: npm install
 
-      - name: Check if new addresses were added via the OFAC xss feed
+      - name: Check if new addresses were added via the OFAC rss feed
         run: npm run update_ofac_list
 
       - name: Sets a flag if the list was changed
