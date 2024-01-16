@@ -14,14 +14,7 @@ jobs:
       repository-projects: write
 
     steps:
-      - name: Get GitHub Token from Akeyless
-        id: get_github_token
-        uses:
-          docker://us-west1-docker.pkg.dev/devopsre/akeyless-public/akeyless-action:latest
-        with:
-          api-url: https://api.gateway.akeyless.celo-networks-dev.org
-          access-id: p-kf9vjzruht6l
-          dynamic-secrets: '{"/dynamic-secrets/keys/github/compliance/contents=write,pull_requests=write":"PAT"}'
+      - uses: actions/checkout@v4
 
       - name: Get NPM Token from Akeyless
         id: get_npmjs_token
@@ -30,10 +23,6 @@ jobs:
           api-url: https://api.gateway.akeyless.celo-networks-dev.org
           access-id: p-kf9vjzruht6l
           static-secrets: '{"/static-secrets/NPM/npm-publish-token":"NPM_TOKEN"}'
-
-      - uses: actions/checkout@v4
-        with:
-          token: ${{ env.PAT }}
 
       - uses: actions/setup-node@v3
         with:
