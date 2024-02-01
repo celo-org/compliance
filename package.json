@@ -1,5 +1,5 @@
 {
-  "name": "compliance-sdk",
+  "name": "@celo/compliance",
   "version": "1.0.14",
   "description": "",
   "main": "./lib/cjs/index.js",
