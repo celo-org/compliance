@@ -1,46 +1,61 @@
-# compliance sdk
-A simple package to help ensure compliance with OFAC sanctions by updating code bases (e.g. front-ends, other applicable products)
-with the latest no-fly addresses list. 
+# @celo/compliance
+
+A simple package to help you stay compliant with OFAC sanctioned addresses (e.g. front-ends, other
+applicable products).
 
 ## Purpose
-The Compliance SDK aims to simplify the process of staying up-to-date with the latest OFAC sanctioned addresses by centralizing them in one place.
+
+This package simplifies the process of staying up-to-date with the latest OFAC sanctioned addresses
+by providing them in a JSON format via an API (recommended) or direct import (discouraged).
 
 ## Update Cadence
-Please note that there is currently no SLA for how quickly the repository will be updated to reflect the most recent OFAC sanctioned addresses. Updates will be done on a best-effort basis.
+
+> [!IMPORTANT] Please note that there is currently no SLA for how quickly the repository will be
+> updated to reflect the most recent OFAC sanctioned addresses. Updates will be done on a
+> best-effort basis.
 
 ## Usage
-To get started, [import the SDK](https://www.npmjs.com/package/compliance-sdk) into your project. Then, choose one of the following options:
 
-### Option One: Import the SANCTIONED_ADDRESSES list
-You can import the SANCTIONED_ADDRESSES list directly into your code. 
-**Please note** that when the list is updated and published to the NPM registry, you will need to update your dependency accordingly.
+### Option 1: Make an API call (recommended)
 
-### Option Two: Make an API call
-Alternatively, you can make an API call to retrieve the latest OFAC sanctions list. Here's an example in TypeScript:
+You can make an API call to retrieve the latest OFAC sanctions list from
+
+```sh
+https://celo-org.github.io/compliance/ofac.sanctions.json
+```
+
+For example:
 
 ```typescript
-import axios from "axios";
-
-export async function SanctionedAddressAPI(): Promise<string[]> {
-  return await axios
-    .get(
-      "https://celo-org.github.io/compliance/ofac.sanctions.json"
-    )
-    .then((response) => {
-      return response.data;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+export async function getSanctionedAddresses(): Promise<string[]> {
+    return await fetch("https://celo-org.github.io/compliance/ofac.sanctions.json")
+        .then((response) => {
+            return response.json();
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 }
 ```
 
-**note**: No changes to your code will be necessary when the list is updated as this API will always return the latest version.
+> [!TIP] No changes to your code will be necessary when the list is updated as this API will always
+> return the latest version.
 
-## Contributing
-This project has two main lists, `ofac.sanctions.json` and `list.ts`. Both these lists hold the same set of addresses. 
-The former is used for the API call, while the latter is used for the direct import.
+### Option 2: Import the SANCTIONED_ADDRESSES list (discouraged)
 
-To contribute, modify the ofac.sanctions.json list in the root directory.
+[import the SDK](https://www.npmjs.com/package/@celo/compliance)
 
-When the change is merged into the main branch, Github will automatically serve the updated list at the API endpoint.sla
+If you really want to, you can explicitly import the `SANCTIONED_ADDRESSES` list exported in the 
+[`@celo/compliance`](https://www.npmjs.com/package/@celo/compliance) package directly into your code.
+
+> [!WARNING] 
+> Although, please note that this is not recommended as it will require you to update your dependency
+> every time the list is updated.
+
+```typescript
+import { SANCTIONED_ADDRESSES } from "@celo/compliance";
+
+export function getSanctionedAddresses(): string[] {
+    return SANCTIONED_ADDRESSES;
+}
+```
