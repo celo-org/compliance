@@ -1,4 +1,4 @@
-# @celo/compliance
+# OFAC Compliance
 
 A simple package to help you stay compliant with OFAC sanctioned addresses (e.g. front-ends, other
 applicable products).
@@ -42,8 +42,6 @@ export async function getSanctionedAddresses(): Promise<string[]> {
 > return the latest version.
 
 ### Option 2: Import the SANCTIONED_ADDRESSES list (discouraged)
-
-[import the SDK](https://www.npmjs.com/package/@celo/compliance)
 
 If you really want to, you can explicitly import the `SANCTIONED_ADDRESSES` list exported in the 
 [`@celo/compliance`](https://www.npmjs.com/package/@celo/compliance) package directly into your code.
