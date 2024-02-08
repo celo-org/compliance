@@ -22,7 +22,7 @@
     "update_ofac_list": "ts-node scripts/get-latest-sanctions.ts && ts-node scripts/export-sanctions.ts"
   },
   "author": "",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "devDependencies": {
     "@types/jsdom": "^21.1.4",
     "jsdom": "^22.1.0",
