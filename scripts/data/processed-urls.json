@@ -226,5 +226,9 @@
   "https://ofac.treasury.gov/recent-actions/20240208": [],
   "https://ofac.treasury.gov/recent-actions/20240214": [],
   "https://ofac.treasury.gov/recent-actions/20240215": [],
-  "https://ofac.treasury.gov/recent-actions/20240216": []
+  "https://ofac.treasury.gov/recent-actions/20240216": [],
+  "https://ofac.treasury.gov/recent-actions/20240220": [
+    "0xf3701f445b6bdafedbca97d1e477357839e4120d"
+  ],
+  "https://ofac.treasury.gov/recent-actions/20240220_33": []
 }
