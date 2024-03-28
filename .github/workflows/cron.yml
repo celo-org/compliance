@@ -5,21 +5,20 @@ on:
   schedule:
     # Daily at 9AM
     - cron: "0 9 * * *"
-      
 
 jobs:
   update_ofac_list:
     runs-on: ubuntu-latest
     outputs:
       GIT_EXIT_CODE: ${{ steps.diff_flag.outputs.GIT_EXIT_CODE }}
+      NEW_COMMIT_HASH: ${{ steps.commit.outputs.commit_hash }}
     permissions:
       id-token: write
 
     steps:
       - name: Get GitHub Token from Akeyless
         id: get_github_token
-        uses:
-          docker://us-west1-docker.pkg.dev/devopsre/akeyless-public/akeyless-action:latest
+        uses: docker://us-west1-docker.pkg.dev/devopsre/akeyless-public/akeyless-action:latest
         with:
           api-url: https://api.gateway.akeyless.celo-networks-dev.org
           access-id: p-kf9vjzruht6l
@@ -46,6 +45,7 @@ jobs:
           echo "GIT_EXIT_CODE=$GIT_EXIT_CODE" >> $GITHUB_OUTPUT >> $GITHUB_OUTPUT
 
       - uses: stefanzweifel/git-auto-commit-action@v5
+        id: commit
         with:
           commit_message: "auto: Add new OFAC addresses"
 
@@ -53,3 +53,5 @@ jobs:
     needs: update_ofac_list
     if: ${{ needs.update_ofac_list.outputs.GIT_EXIT_CODE == 1 }}
     uses: celo-org/compliance/.github/workflows/publish.yml@main
+    with:
+      commit_hash: ${{ needs.update_ofac_list.outputs.NEW_COMMIT_HASH }}

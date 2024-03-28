@@ -2,7 +2,17 @@ name: Publish Package to npmjs
 
 on:
   workflow_call:
+    inputs:
+      commit_hash:
+        description: "Commit to checkout and to publish"
+        required: true
+        type: string
   workflow_dispatch:
+    inputs:
+      commit_hash:
+        description: "Commit to checkout and to publish"
+        required: true
+        type: string
 
 jobs:
   publish:
@@ -15,6 +25,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.commit_hash }}
 
       - name: Get NPM Token from Akeyless
         id: get_npmjs_token
