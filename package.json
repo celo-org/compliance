@@ -1,6 +1,6 @@
 {
   "name": "@celo/compliance",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "description": "",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
