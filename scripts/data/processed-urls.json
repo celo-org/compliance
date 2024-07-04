@@ -307,5 +307,12 @@
   "https://ofac.treasury.gov/recent-actions/20240625": [],
   "https://ofac.treasury.gov/recent-actions/20240626": [],
   "https://ofac.treasury.gov/recent-actions/20240627": [],
-  "https://ofac.treasury.gov/recent-actions/20240701": []
+  "https://ofac.treasury.gov/recent-actions/20240701": [],
+  "https://ofac.treasury.gov/recent-actions/20240703": [
+    "0x7ff9cfad3877f21d41da833e2f775db0569ee3d9",
+    "0x38735f03b30fbc022ddd06abed01f0ca823c6a94",
+    "0xc2a3829f459b3edd87791c74cd45402ba0a20be3",
+    "0x3ad9db589d201a710ed237c829c7860ba86510fc",
+    "0x39d908dac893cbcb53cc86e0ecc369aa4def1a29"
+  ]
 }
