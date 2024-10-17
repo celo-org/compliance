@@ -25,7 +25,7 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "@types/jsdom": "^21.1.4",
-    "jsdom": "^24.0.0",
+    "jsdom": "^25.0.0",
     "rss-parser": "^3.13.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.0"
