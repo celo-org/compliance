@@ -1,5 +1,6 @@
-export { SANCTIONED_ADDRESSES } from "./list";
-export const OFAC_SANCTIONS_LIST_URL = "https://celo-org.github.io/compliance/ofac.sanctions.json"
+export { default as SANCTIONED_ADDRESSES } from "../ofac.sanctions.json" with { type: "json" };
+export const OFAC_SANCTIONS_LIST_URL =
+  "https://celo-org.github.io/compliance/ofac.sanctions.json";
 export const COMPLIANT_ERROR_RESPONSE =
   "'The wallet address has been sanctioned by the U.S. Department of the Treasury.'" +
   "'All U.S. persons are prohibited from accessing, receiving, accepting, or facilitating any property " +

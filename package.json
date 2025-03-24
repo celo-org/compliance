@@ -16,18 +16,20 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf ./lib",
-    "build:esm": "tsc --module esnext --outDir ./lib/esm",
-    "build:cjs": "tsc --module commonjs --outDir ./lib/cjs",
-    "build": "npm run clean && npm run build:esm && npm run build:cjs",
-    "update_ofac_list": "ts-node scripts/get-latest-sanctions.ts && ts-node scripts/export-sanctions.ts"
+    "build": "bun run clean && bun scripts/build.ts",
+    "update_ofac_list": "bun scripts/get-latest-sanctions.ts && bun scripts/export-sanctions.ts"
   },
   "author": "",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@types/jsdom": "^21.1.4",
-    "jsdom": "^25.0.0",
+    "@types/bun": "latest",
     "rss-parser": "^3.13.0",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.0.0"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  },
+  "type": "module",
+  "private": false,
+  "dependencies": {
+    "fast-xml-parser": "^5.0.9"
   }
 }
