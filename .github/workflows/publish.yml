@@ -38,8 +38,6 @@ jobs:
 
       - uses: actions/setup-node@v4
       - uses: oven-sh/setup-bun@v2
-        with:
-          registry-url: "https://registry.npmjs.org"
 
       - run: bun install
 
