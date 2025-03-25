@@ -28,14 +28,12 @@ jobs:
         with:
           token: ${{ env.PAT }}
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "18.x"
+      - uses: oven-sh/setup-bun@v2
 
-      - run: npm install
+      - run: bun install
 
       - name: Check if new addresses were added via the OFAC rss feed
-        run: npm run update_ofac_list
+        run: bun run update_ofac_list
 
       - name: Sets a flag if the list was changed
         id: diff_flag

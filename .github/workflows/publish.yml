@@ -37,21 +37,21 @@ jobs:
           static-secrets: '{"/static-secrets/NPM/npm-publish-token":"NPM_TOKEN"}'
 
       - uses: actions/setup-node@v4
+      - uses: oven-sh/setup-bun@v2
         with:
-          node-version: "18.x"
           registry-url: "https://registry.npmjs.org"
 
-      - run: npm install
+      - run: bun install
 
       - name: Compile typescript library
-        run: npm run build
+        run: bun run build
 
       - name: Bump version
         id: bump_version
         run: echo "NPM_VERSION=$(npm version patch --no-git-tag-version)" >> $GITHUB_OUTPUT
 
       - name: Publish
-        run: npm publish --access public
+        run: bun publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ env.NPM_TOKEN }}
 
