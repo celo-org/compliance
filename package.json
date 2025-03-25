@@ -16,20 +16,20 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf ./lib",
-    "build": "bun run clean && bun scripts/build.ts",
+    "build:esm": "tsc --module esnext --outDir ./lib/esm",
+    "build:cjs": "tsc --module commonjs --outDir ./lib/cjs",
+    "build": "bun run clean && bun run build:esm && bun run build:cjs",
     "update_ofac_list": "bun scripts/get-latest-sanctions.ts && bun scripts/export-sanctions.ts"
   },
   "author": "",
   "license": "Apache-2.0",
   "devDependencies": {
     "@types/bun": "latest",
+    "fast-xml-parser": "^5.0.9",
     "rss-parser": "^3.13.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2"
   },
   "type": "module",
-  "private": false,
-  "dependencies": {
-    "fast-xml-parser": "^5.0.9"
-  }
+  "private": false
 }

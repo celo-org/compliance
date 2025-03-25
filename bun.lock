@@ -3,11 +3,9 @@
   "workspaces": {
     "": {
       "name": "@celo/compliance",
-      "dependencies": {
-        "fast-xml-parser": "^5.0.9",
-      },
       "devDependencies": {
         "@types/bun": "latest",
+        "fast-xml-parser": "^5.0.9",
         "rss-parser": "^3.13.0",
         "ts-node": "^10.9.2",
         "typescript": "^5.8.2",

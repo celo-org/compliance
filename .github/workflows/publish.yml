@@ -26,7 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ inputs.commit_hash }}
 
       - name: Get NPM Token from Akeyless
         id: get_npmjs_token

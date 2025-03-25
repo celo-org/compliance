@@ -1,4 +1,4 @@
-export { default as SANCTIONED_ADDRESSES } from "../ofac.sanctions.json" with { type: "json" };
+export { SANCTIONED_ADDRESSES } from "./ofac.sanctions";
 export const OFAC_SANCTIONS_LIST_URL =
   "https://celo-org.github.io/compliance/ofac.sanctions.json";
 export const COMPLIANT_ERROR_RESPONSE =
