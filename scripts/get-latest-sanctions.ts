@@ -70,13 +70,20 @@ const downloadFile = async (url: string, fileName: string) => {
   let start = Date.now();
   const byteLength = parseInt(res.headers.get("content-length")!, 10);
 
-  const pp = printProgress(fileName);
-  const watcher = setInterval(async () => {
-    const downloadedBytes = (await stat(destination)).size;
-    pp(downloadedBytes, byteLength, start);
-  }, 500);
+  let watcher: Timer | undefined;
+  if (!process.env.CI) {
+    const pp = printProgress(fileName);
+    const watcher = setInterval(async () => {
+      const downloadedBytes = (await stat(destination)).size;
+      pp(downloadedBytes, byteLength, start);
+    }, 500);
+  }
+
   await writeFile(destination, fetchStream);
-  clearInterval(watcher);
+
+  if (watcher !== undefined) {
+    clearInterval(watcher);
+  }
 
   const file = await readFile(destination);
 
