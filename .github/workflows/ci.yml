@@ -13,12 +13,16 @@ jobs:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
       - run: bun install
+
       - name: Compile typescript library
         run: bun run build
+
+      - name: Link
+        run: bun link
+
       - name: Tests
+        working-directory: tests
         run: |
-          bun link
-          cd tests
           bun link @celo/compliance
           bun run test.cjs
           bun run test.mjs
@@ -37,13 +41,16 @@ jobs:
           node-version: ${{ matrix.node }}
       - uses: oven-sh/setup-bun@v2
       - run: bun install
+
       - name: Compile typescript library
         run: bun run build
 
+      - name: Link
+        run: npm link
+
       - name: Tests
+        working-directory: tests
         run: |
-          npm link
-          cd tests
           npm link @celo/compliance
           node test.cjs
           node test.mjs
