@@ -47,4 +47,5 @@ jobs:
           npm link @celo/compliance
           node test.cjs
           node test.mjs
-          npm exec tsc -- -p tsconfig.json
+          npm exec tsc -- -p tsconfig.json && \
+            echo "@celo/compliance can be imported in typescript\n@celo/compliance is typed correctly"
