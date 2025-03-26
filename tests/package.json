@@ -1,0 +1,7 @@
+{
+  "name": "@celo/compliance-tests",
+  "private": true,
+  "dependencies": {
+    "@celo/compliance": "*"
+  }
+}
