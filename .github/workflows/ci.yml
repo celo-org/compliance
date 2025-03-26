@@ -1,0 +1,58 @@
+name: Tests
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  bun_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install
+
+      - name: Compile typescript library
+        run: bun run build
+
+      - name: Link
+        run: bun link
+
+      - name: Tests
+        working-directory: tests
+        run: |
+          bun link @celo/compliance
+          bun run test.cjs
+          bun run test.mjs
+          bun run test.ts
+
+  node_tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [18, 20, 22]
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install
+
+      - name: Compile typescript library
+        run: bun run build
+
+      - name: Link
+        run: npm link
+
+      - name: Tests
+        working-directory: tests
+        run: |
+          npm link @celo/compliance
+          node test.cjs
+          node test.mjs
+          npm exec tsc -- -p tsconfig.json && \
+            echo "@celo/compliance can be imported in typescript\n@celo/compliance is typed correctly"
