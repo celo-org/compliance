@@ -42,7 +42,7 @@ jobs:
           [[ "$RESULT" = "" ]] && GIT_EXIT_CODE=0 || GIT_EXIT_CODE=1
           echo "GIT_EXIT_CODE=$GIT_EXIT_CODE" >> $GITHUB_OUTPUT >> $GITHUB_OUTPUT
 
-      - uses: stefanzweifel/git-auto-commit-action@v5
+      - uses: stefanzweifel/git-auto-commit-action@v6
         id: commit
         with:
           commit_message: "auto: Add new OFAC addresses"
