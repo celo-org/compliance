@@ -36,7 +36,7 @@ jobs:
           access-id: p-kf9vjzruht6l
           static-secrets: '{"/static-secrets/NPM/npm-publish-token":"NPM_TOKEN"}'
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
       - uses: oven-sh/setup-bun@v2
 
       - run: bun install
