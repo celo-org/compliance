@@ -24,7 +24,7 @@ jobs:
           access-id: p-kf9vjzruht6l
           dynamic-secrets: '{"/dynamic-secrets/keys/github/compliance/contents=write,pull_requests=write":"PAT"}'
 
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           token: ${{ env.PAT }}
 
