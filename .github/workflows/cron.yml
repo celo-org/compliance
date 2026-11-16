@@ -13,20 +13,10 @@ jobs:
       GIT_EXIT_CODE: ${{ steps.diff_flag.outputs.GIT_EXIT_CODE }}
       NEW_COMMIT_HASH: ${{ steps.commit.outputs.commit_hash }}
     permissions:
-      id-token: write
+      contents: write  # git-auto-commit pushes the updated list to main
 
     steps:
-      - name: Get GitHub Token from Akeyless
-        id: get_github_token
-        uses: docker://us-west1-docker.pkg.dev/devopsre/akeyless-public/akeyless-action:latest
-        with:
-          api-url: https://api.gateway.akeyless.celo-networks-dev.org
-          access-id: p-kf9vjzruht6l
-          dynamic-secrets: '{"/dynamic-secrets/keys/github/compliance/contents=write,pull_requests=write":"PAT"}'
-
       - uses: actions/checkout@v5
-        with:
-          token: ${{ env.PAT }}
 
       - uses: oven-sh/setup-bun@v2
 
@@ -50,6 +40,12 @@ jobs:
   publish-npm-package:
     needs: update_ofac_list
     if: ${{ needs.update_ofac_list.outputs.GIT_EXIT_CODE == 1 }}
+    # A called workflow can't get more than the caller grants; match publish.yml (id-token for npm OIDC)
+    permissions:
+      contents: write
+      id-token: write
+      pull-requests: write
+      repository-projects: write
     uses: celo-org/compliance/.github/workflows/publish.yml@main
     with:
       commit_hash: ${{ needs.update_ofac_list.outputs.NEW_COMMIT_HASH }}
