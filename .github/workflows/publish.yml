@@ -16,7 +16,7 @@ on:
 
 jobs:
   publish:
-    runs-on: ["self-hosted", "org", "npm-publish"]
+    runs-on: ubuntu-latest  # npm trusted publishing does not support self-hosted runners
     permissions:
       contents: write
       id-token: write
@@ -64,5 +64,6 @@ jobs:
 
       - uses: stefanzweifel/git-auto-commit-action@v6
         with:
+          branch: main  # checkout is a detached SHA
           commit_message: "auto: publish ${{ steps.bump_version.outputs.NPM_VERSION }}"
           tagging_message: ${{ steps.bump_version.outputs.NPM_VERSION }}
