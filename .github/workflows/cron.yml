@@ -16,7 +16,7 @@ jobs:
       contents: write  # git-auto-commit pushes the updated list to main
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - uses: oven-sh/setup-bun@v2
 
